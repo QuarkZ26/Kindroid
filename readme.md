@@ -20,7 +20,7 @@ A collection of helper scripts for [kindroid.ai](https://kindroid.ai), designed 
 ## 🧠 Requirements
 
 - Browser with Violentmonkey installed (Chrome, Edge, Brave, Firefox, etc.), or GreaseMonkey or alternative, which should work but are untested.
-- For Mobile, Firefox works as well. You can export your script and reimport for easy transfer.
+- For Mobile, Firefox works as well. You can export your script and reimport for easy transfer, or if you just use mobile install them directly.
 - JavaScript enabled
 
 ---
@@ -48,11 +48,6 @@ https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/Quick%20Replies%20Custo
 https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/Suggestions%20Customizer/SuggestionsCustomizer.js
 
 https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/Vertical%20Kin%20Menu/CloneKinButtons.js
-
-
-
-
-> 📌 Tip: If the script doesn't install automatically, copy the URL, open a new tab, and paste it manually.
 
 ---
 
