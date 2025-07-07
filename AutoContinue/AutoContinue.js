@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name          Kindroid Auto Click Button
+// @name          Kindroid Auto Click Continue
 // @namespace     Violentmonkey Scripts
 // @version       3.39.7
 // @description   Adds a persistent button to Kindroid to auto-click "Continue" messages and "Send" if AI has not responded within X seconds, with a configurable counter and manual reset. Resets only on user explicit action (Enter, Send, Manual Continue Click, or Toggling Button). Long press on the icon enables continuous auto-clicking.
