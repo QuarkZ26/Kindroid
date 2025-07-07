@@ -59,8 +59,10 @@ URLs:
 Some scripts (like `AutoContinue.js`) have **Violentmonkey menu options**:
 
 - Click the monkey icon.
-- Under the scripts that have useable options, click on them to get to the Setting
-![image](https://github.com/user-attachments/assets/33672f95-f3da-4d38-91f7-e144987dac90)
+- Under the scripts that have useable options, click on them to get to the Setting. Refer to the script's readme for help with those particular settings.
+  
+![image](https://github.com/user-attachments/assets/972532c9-205d-405a-a368-470fe8e0c017)
+
 
 These menus let you change settings without editing code.
 
