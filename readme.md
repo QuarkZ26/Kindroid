@@ -8,12 +8,20 @@ A collection of helper scripts for [kindroid.ai](https://kindroid.ai), designed 
 
 | Script                   | Description |
 |--------------------------|-------------|
-| **AutoContinue.js**      | Automatically clicks "Continue" and optionally resends stalled messages. Long-press toggles continuous mode. |
+| **AutoContinue.js**      | Automatically clicks "Continue" when Kin messages are too long. Option to either click a certain amount of times or continuously click. Long-press toggles continuous mode. |
 | **BubbleExtender**       | Adds a UI slider to adjust chat width live. |
-| **ClearBoxWizard.js**    | Clears the input box before activating Kindroid’s "Suggest" wizard. |
+| **ClearBoxWizard.js**    | Clears the input box before activating Kindroid’s "Suggest" wizard, so that it outputs a breand new suggestion instead of adding to the existing one. |
 | **CloneKinsToTheSide.js**| Clones avatar (kin) buttons to the right side for fast access. |
-| **CustomSuggestions.js** | Add personal suggestion buttons with color and label. Includes drag-and-drop manager. |
-| **QuickReplies.js**      | Create one-tap replies that auto-send. Great for emotes or prompts. |
+| **CustomSuggestions.js** | Add personal suggestion buttons with color and label. Includes Manager. |
+| **QuickReplies.js**      | Create one-tap replies under the textbox that auto-send. |
+
+---
+
+## 🧠 Requirements
+
+- Browser with Violentmonkey installed (Chrome, Edge, Brave, Firefox, etc.), or GreaseMonkey or alternative, which should work but are untested.
+- For Mobile, Firefox works as well. You can export your script and reimport for easy transfer.
+- JavaScript enabled
 
 ---
 
@@ -64,15 +72,7 @@ Some scripts (like `AutoContinue.js`) have **Violentmonkey menu options**:
 
 These menus let you change settings without editing code.
 
----
 
-## 🧠 Requirements
-
-- Browser with Violentmonkey installed (Chrome, Edge, Brave, Firefox, etc.)
-- An account on [kindroid.ai](https://kindroid.ai)
-- JavaScript enabled
-
----
 
 ## 🤝 Contributing
 
