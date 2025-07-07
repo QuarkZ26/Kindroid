@@ -36,6 +36,7 @@ There are two ways to install these scripts in Violentmonkey:
 3. Put one of the URLs below
 
 Example URLs:
+
 https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/AutoContinue/AutoContinue.js
 
 https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/Chat%20Bubble%20Extender/ChatExtender.js
