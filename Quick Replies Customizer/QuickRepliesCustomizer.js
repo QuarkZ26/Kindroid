@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Kindroid Quick Reply Buttons with Manager
 // @namespace Violentmonkey Scripts
-// @version 3.1 // Updated version number to reflect all changes
+// @version 3.1.1
 // @description Adds customizable quick reply buttons under the chat input, keeps them across page changes, and includes a management panel.
 // @match *://*.kindroid.ai/*
 // @grant GM_setValue
@@ -24,7 +24,7 @@
   // Default quick reply configuration
   const defaultQuickRepliesConfig = {
     replies: [
-      { id: 'qr_goon', label: 'go on', message: 'Go on' },
+      { id: 'qr_goon', label: 'go on', message: '"Go on"' },
       { id: 'qr_smile', label: 'smile', message: '*I smile*' },
     ]
   };
