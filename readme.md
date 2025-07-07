@@ -9,11 +9,11 @@ A collection of helper scripts for [kindroid.ai](https://kindroid.ai), designed 
 | Script                   | Description |
 |--------------------------|-------------|
 | [**AutoContinue.js**](https://github.com/QuarkZ26/Kindroid/tree/main/AutoContinue)      | Automatically clicks "Continue" when Kin messages are too long. Option to either click a certain amount of times or continuously click. Long-press toggles continuous mode. |
-| **BubbleExtender**       | Adds a UI slider to adjust chat width live. |
-| **ClearBoxWizard.js**    | Clears the input box before activating Kindroid’s "Suggest" wizard, so that it outputs a brand new suggestion instead of adding to the existing one. |
-| **CloneKinsToTheSide.js**| Clones avatar (kin) buttons to the right side for fast access. |
-| **CustomSuggestions.js** | Add personal suggestion buttons with color and label. Includes Manager. |
-| **QuickReplies.js**      | Create one-tap replies under the textbox that auto-send. |
+| [**BubbleExtender**](https://github.com/QuarkZ26/Kindroid/tree/main/Chat%20Bubble%20Extender)       | Adds a UI slider to adjust chat width live. |
+| [**ClearBoxWizard.js**](https://github.com/QuarkZ26/Kindroid/tree/main/ChatBox%20Clearer%20for%20Wizard) | Clears the input box before activating Kindroid’s "Suggest" wizard, so that it outputs a brand new suggestion instead of adding to the existing one. |
+| [**CloneKinsToTheSide.js**](https://github.com/QuarkZ26/Kindroid/tree/main/Vertical%20Kin%20Menu) | Clones avatar (kin) buttons to the right side for fast access. |
+| [**CustomSuggestions.js**](https://github.com/QuarkZ26/Kindroid/tree/main/Suggestions%20Customizer) | Add personal suggestion buttons with color and label. Includes Manager. |
+| [**QuickReplies.js**](https://github.com/QuarkZ26/Kindroid/tree/main/Quick%20Replies%20Customizer)      | Create one-tap replies under the textbox that auto-send. |
 
 ---
 
