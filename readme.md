@@ -35,7 +35,7 @@ There are two ways to install these scripts in Violentmonkey:
 2. Click the + button and select "Install From URL"
 3. Paste one of the URLs below
 
-Example URLs:
+URLs:
 
 - https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/AutoContinue/AutoContinue.js  
 - https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/Chat%20Bubble%20Extender/ChatExtender.js  
@@ -44,17 +44,13 @@ Example URLs:
 - https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/Suggestions%20Customizer/SuggestionsCustomizer.js  
 - https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/Vertical%20Kin%20Menu/CloneKinButtons.js  
 
-Tip: If the script doesn't install automatically, copy the URL, open a new tab, and paste it manually.
 
-### Option 2: Manual Copy & Paste
 
-1. Open [this repo](https://github.com/QuarkZ26/Kindroid) on GitHub.
-2. Open the script you want.
-3. Open Violentmonkey dashboard → **Create a new script**.
-4. **Delete** the default code, then **paste** the copied script.
-5. Save (`Ctrl+S` or 💾).
+### Option 2: Manual Copy & Paste (Future updates will have to be done manually)
 
-Use this method if you want to preview or modify the script before installing.
+1. Open Violentmonkey dashboard → **Create a new script**.
+2. **Delete** the default code, then **paste** the copied script.
+3. Save.
 
 ---
 
@@ -62,22 +58,10 @@ Use this method if you want to preview or modify the script before installing.
 
 Some scripts (like `AutoContinue.js`) have **Violentmonkey menu options**:
 
-- Right-click the monkey icon or open the VM dashboard.
-- Choose the script → use **menu commands** like:
-  - “Set max auto-clicks”
-  - “Manage Quick Replies”
-  - “Manage Suggestion Buttons”
+- Click the monkey icon.
+- Under the scripts that have useable options, click on them to get to the Setting
+![image](https://github.com/user-attachments/assets/33672f95-f3da-4d38-91f7-e144987dac90)
 
 These menus let you change settings without editing code.
 
 ---
-
-## Contributing
-
-Pull requests and issues welcome! Please keep each script self-contained.
-
----
-
-## License
-
-MIT — Free to use, share, modify.
