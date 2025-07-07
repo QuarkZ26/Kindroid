@@ -37,10 +37,15 @@ There are two ways to install these scripts in Violentmonkey:
 
 Example URLs:
 https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/AutoContinue/AutoContinue.js
+
 https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/Chat%20Bubble%20Extender/ChatExtender.js
+
 https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/ChatBox%20Clearer%20for%20Wizard/WizardClear.js
+
 https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/Quick%20Replies%20Customizer/QuickRepliesCustomizer.js
+
 https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/Suggestions%20Customizer/SuggestionsCustomizer.js
+
 https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/Vertical%20Kin%20Menu/CloneKinButtons.js
 
 
