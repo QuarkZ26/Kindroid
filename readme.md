@@ -1,54 +1,85 @@
-Kindroid Helper Scripts (Violentmonkey)
+# Kindroid Userscripts Toolkit
 
-This repository contains a collection of Violentmonkey user scripts designed to enhance and automate interactions with Kindroid, a popular Android app mirroring and control interface.
-✨ Features
+A collection of helper scripts for [kindroid.ai](https://kindroid.ai), designed to improve usability, automate common tasks, and enhance the chat interface. All scripts are designed for use with **Violentmonkey**, and are also compatible with Tampermonkey or Greasemonkey 4+.
 
-These scripts aim to streamline your workflow by automating tedious or repetitive actions within the Kindroid web interface. Examples include:
+---
 
-    ✅ Auto-clicking "cut-off message" or "view full message" buttons
+## 📜 Scripts
 
-    🔁 Persistent automation through page switches (single-page app support)
+| Script                   | Description |
+|--------------------------|-------------|
+| **AutoContinue.js**      | Automatically clicks "Continue" and optionally resends stalled messages. Long-press toggles continuous mode. |
+| **BubbleExtender**       | Adds a UI slider to adjust chat width live. |
+| **ClearBoxWizard.js**    | Clears the input box before activating Kindroid’s "Suggest" wizard. |
+| **CloneKinsToTheSide.js**| Clones avatar (kin) buttons to the right side for fast access. |
+| **CustomSuggestions.js** | Add personal suggestion buttons with color and label. Includes drag-and-drop manager. |
+| **QuickReplies.js**      | Create one-tap replies that auto-send. Great for emotes or prompts. |
 
-    ⚙️ Configurable script behavior via in-page UI
+---
 
-    🔒 Domain-safe execution — only runs where it's supposed to
+## 🚀 Installation
 
-📜 Scripts Included
-Script Name	Description
-autoclick-cutoff.js	Automatically clicks the "cut-off message" expander
-persistent-handler.js	Ensures functionality survives page switches
-configurable-ui.js	Adds an in-page config button for toggling features
+There are two ways to install these scripts in Violentmonkey:
 
-    More scripts will be added over time as new needs arise.
+### ✅ Option 1: Install by URL (Recommended)
 
-🛠 Requirements
+1. Click a script URL from the list below.
+2. Violentmonkey will open an install prompt → click **Install**.
+3. Script will now auto-update when new versions are pushed.
 
-    Violentmonkey browser extension (Chrome, Firefox, etc.)
+Example URLs:
+https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/scripts/AutoContinue.js
+https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/scripts/BubbleExtender.js
+https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/scripts/ClearBoxWizard.js
+https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/scripts/CloneKinsToTheSide.js
+https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/scripts/CustomSuggestions.js
+https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/scripts/QuickReplies.js
 
-🚀 Installation
 
-    Install Violentmonkey from https://violentmonkey.github.io/
+> 📌 Tip: If the script doesn't install automatically, copy the URL, open a new tab, and paste it manually.
 
-    Click on the script(s) you want from this repo
+---
 
-    Press "Install" when prompted
+### ✂️ Option 2: Manual Copy & Paste
 
-📁 File Structure
+1. Open [this repo](https://github.com/QuarkZ26/Kindroid) on GitHub.
+2. Open the script you want.
+3. Open Violentmonkey dashboard → **Create a new script**.
+4. **Delete** the default code, then **paste** the copied script.
+5. Save (💾 or `Ctrl+S`).
 
-/scripts
-  ├─ autoclick-cutoff.js
-  ├─ persistent-handler.js
-  └─ configurable-ui.js
+Use this method if you want to preview or modify the script before installing.
 
-⚠️ Notes
+---
 
-    Scripts are tailored for specific Kindroid page structures. If the Kindroid UI changes significantly, the scripts may need updates.
+## 🔧 Script Settings
 
-    Use responsibly — these scripts are meant to improve user experience, not abuse the platform.
+Some scripts (like `AutoContinue.js`) have **Violentmonkey menu options**:
 
-🙋‍♂️ Contributing
+- Right-click the 🐵 icon or open the VM dashboard.
+- Choose the script → use **menu commands** like:
+  - “Set max auto-clicks”
+  - “Manage Quick Replies”
+  - “Manage Suggestion Buttons”
 
-Pull requests are welcome! If you’ve made improvements or want to contribute new scripts, feel free to submit a PR or open an issue.
-📄 License
+These menus let you change settings without editing code.
 
-MIT License — see LICENSE for details.
+---
+
+## 🧠 Requirements
+
+- Browser with Violentmonkey installed (Chrome, Edge, Brave, Firefox, etc.)
+- An account on [kindroid.ai](https://kindroid.ai)
+- JavaScript enabled
+
+---
+
+## 🤝 Contributing
+
+Pull requests and issues welcome! Please keep each script self-contained.
+
+---
+
+## 🪪 License
+
+MIT — Free to use, share, modify.
