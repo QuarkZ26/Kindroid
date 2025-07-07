@@ -33,9 +33,9 @@ There are two ways to install these scripts in Violentmonkey:
 
 1. Open ViolentMonkey Settings
 2. Click the + button and select "Install From URL"
-3. Paste one of the URLs below
+3. Paste one of the URLs below **in Raw format**
 
-URLs:
+Current URLs:
 
 - https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/AutoContinue/AutoContinue.js  
 - https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/Chat%20Bubble%20Extender/ChatExtender.js  
@@ -56,14 +56,11 @@ URLs:
 
 ## Script Settings
 
-Some scripts (like `AutoContinue.js`) have **Violentmonkey menu options**:
+Some scripts have **Violentmonkey menu options**. Those menus let you change settings without having to edit code.:
 
 - Click the monkey icon.
 - Under the scripts that have useable options, click on them to get to the Setting. Refer to the script's readme for help with those particular settings.
   
 ![image](https://github.com/user-attachments/assets/972532c9-205d-405a-a368-470fe8e0c017)
-
-
-These menus let you change settings without editing code.
 
 ---
