@@ -8,7 +8,7 @@ A collection of helper scripts for [kindroid.ai](https://kindroid.ai), designed 
 
 | Script                   | Description |
 |--------------------------|-------------|
-| **AutoContinue.js**      | Automatically clicks "Continue" when Kin messages are too long. Option to either click a certain amount of times or continuously click. Long-press toggles continuous mode. |
+| [**AutoContinue.js**](https://github.com/QuarkZ26/Kindroid/tree/main/AutoContinue)      | Automatically clicks "Continue" when Kin messages are too long. Option to either click a certain amount of times or continuously click. Long-press toggles continuous mode. |
 | **BubbleExtender**       | Adds a UI slider to adjust chat width live. |
 | **ClearBoxWizard.js**    | Clears the input box before activating Kindroid’s "Suggest" wizard, so that it outputs a brand new suggestion instead of adding to the existing one. |
 | **CloneKinsToTheSide.js**| Clones avatar (kin) buttons to the right side for fast access. |
