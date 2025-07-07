@@ -1,20 +1,60 @@
-Kindroid Clear Chatbox when Using Wizard
+# 🧹 Kindroid Chatbox Cleaner + Smart Suggest Trigger
 
-This userscript enhances the Kindroid chat UI by automatically clearing the chatbox before triggering the “Suggest message” button — ensuring no leftover text interferes with the assistant's suggestion.
-✨ Features
+A powerful [ViolentMonkey](https://violentmonkey.github.io/) userscript for [Kindroid.ai](https://kindroid.ai/) that **clears the message textarea before generating suggestions**, preventing stale or unintended prompts — while still giving you full control via **long-press bypass**.
 
-    ✅ Auto-clears the chatbox before triggering the "Suggest message" button.
+---
 
-    🧠 Bypass clearing with a long-press (≥600ms hold) — just click Suggest without clearing.
+## 🚀 Features
 
-    🕵️ Invisible overlay button ensures compatibility with Kindroid’s layout.
+- ✅ **Auto-clears** the chatbox before triggering the “Suggest message” button  
+- 🔁 **Bypasses React control** using native input setters (React-safe)  
+- 🧠 **Long-press detection** (≥600ms) lets you *skip clearing* if needed  
+- 🎯 Invisible overlay button ensures seamless UX — no UI interference  
+- 🔄 **Resilient to DOM changes** in SPA environments (mutation observer)  
+- 🛡️ Doesn’t interfere with regular Kindroid functionality  
 
-    ♻️ Self-healing overlay tracks layout changes or re-rendering.
+---
 
-    🛡️ Handles React-controlled inputs safely via native setter and input events.
+## 💡 Usage
 
-This ensures you can either:
+| Action                       | Behavior                                         |
+|-----------------------------|--------------------------------------------------|
+| **Click (normal)**          | Clears the chatbox, then triggers “Suggest”     |
+| **Long-press (≥600ms)**     | Skips clearing — just triggers “Suggest”        |
 
-    Tap → Clear & Suggest (default).
+The script is ideal for users who often forget to clear their input or want to automate the clean state before generation, while still allowing exceptions with a long press.
 
-    Hold → Suggest without clearing (e.g., retrying or adjusting a previous prompt, or starting your own prompt and have the wizard add to it).
+---
+
+## 🛠️ Installation
+
+1. Install the [ViolentMonkey extension](https://violentmonkey.github.io/) (available for Chrome, Firefox, etc.)
+2. Click **"Create a new script"** from the extension dashboard
+3. Paste in the contents of [`kindroid-clear-suggest.user.js`](#)
+4. Save the script — it will automatically run on [https://kindroid.ai/](https://kindroid.ai/)
+
+---
+
+## 🧪 How It Works
+
+- The script watches for the presence of Kindroid’s **“Suggest message”** button.
+- An invisible, fixed-position overlay `<button>` is placed exactly on top of it.
+- When clicked, the script:
+  - Clears the textarea using native `value` setters (to properly inform React)
+  - Triggers the original button after clearing is complete
+- On long-press (≥600ms), the overlay bypasses clearing and simply forwards the click
+
+All logic is isolated and event-safe. Long-press timing is handled via `pointerdown`/`pointerup`.
+
+---
+
+## 🖼️ Preview
+
+> _(Optional: insert screenshot or demo gif here)_  
+> Example:  
+> ![screenshot](./screenshot.png)
+
+---
+
+## 📦 File Structure
+
