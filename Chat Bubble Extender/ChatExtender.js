@@ -9,6 +9,7 @@
 // @grant        GM_getValue
 // @grant        GM_setValue
 // @grant        GM_registerMenuCommand
+// @icon          https://gitlab.com/breatfr/kindroid/-/raw/main/images/icon_kindroid.png
 // ==/UserScript==
 
 (function () {
