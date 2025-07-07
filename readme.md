@@ -20,8 +20,7 @@ A collection of helper scripts for [kindroid.ai](https://kindroid.ai), designed 
 ## Requirements
 
 - Browser with Violentmonkey installed (Chrome, Edge, Brave, Firefox, etc.), or GreaseMonkey or alternative, which should work but are untested.
-- For Mobile, Firefox works as well. You can export your script and reimport for easy transfer.
-- JavaScript enabled
+- For Mobile, Firefox works as well. You can export your script(s) and reimport for easy transfer, or just install them directly if you don't use desktop at all.
 
 ---
 
