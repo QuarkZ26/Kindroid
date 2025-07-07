@@ -5,6 +5,7 @@
 // @description Clone all avatar buttons and place them in the middle right of the screen, dynamically updating. Displays a "Go Back" button when the avatar container is absent (e.g., on group chat pages).
 // @match       *://kindroid.ai/*
 // @grant       none
+// @icon          https://gitlab.com/breatfr/kindroid/-/raw/main/images/icon_kindroid.png
 // ==/UserScript==
 
 (function () {
