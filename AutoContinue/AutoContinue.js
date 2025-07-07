@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name          Kindroid Auto Click Continue Button
+// @name          Kindroid Auto Click Button
 // @namespace     Violentmonkey Scripts
 // @version       3.39.7
 // @description   Adds a persistent button to Kindroid to auto-click "Continue" messages and "Send" if AI has not responded within X seconds, with a configurable counter and manual reset. Resets only on user explicit action (Enter, Send, Manual Continue Click, or Toggling Button). Long press on the icon enables continuous auto-clicking.
@@ -8,7 +8,6 @@
 // @grant         GM_setValue
 // @grant         GM_addStyle
 // @grant         GM_registerMenuCommand
-// @icon          https://gitlab.com/breatfr/kindroid/-/raw/main/images/icon_kindroid.png
 // ==/UserScript==
 
 (function() {
@@ -45,6 +44,8 @@
     const SEND_BUTTON_SELECTOR = 'button[aria-label="Send message"]';
     const SPINNER_SELECTOR = 'button[aria-label="Send message"] div.chakra-spinner';
     const CSS_SPINNER_CLASS = 'chakra-spinner';
+    const REGENERATE_BUTTON_SELECTOR = 'button[aria-label="Regenerate"]';
+
 
     // --- Script UI Elements ---
     let configButton = null;
@@ -76,6 +77,26 @@
         }
         console.log("Auto-Click Debug: Configuration loaded:", config);
     };
+
+      // Add Violentmonkey menu command to set maxClicks
+    GM_registerMenuCommand('Set max auto-clicks', async () => {
+        const input = prompt(`Current maxClicks: ${config.maxClicks}\nEnter new value (0 for continuous mode):`, config.maxClicks);
+        const parsed = parseInt(input);
+        if (!isNaN(parsed) && parsed >= 0) {
+            if (parsed === 0) {
+                config.continuousModeEnabled = true;
+                config.maxClicks = config.continuousMaxClicks;
+            } else {
+                config.continuousModeEnabled = false;
+                config.maxClicks = parsed;
+            }
+            await saveConfig();
+            alert(`maxClicks is now set to ${config.maxClicks}${config.continuousModeEnabled ? ' (continuous)' : ''}`);
+            performResetAndResumeAutoClick('maxClicks changed via menu');
+        } else {
+            alert('Invalid number.');
+        }
+    });
 
     // Save configuration to storage
     const saveConfig = async () => {
@@ -457,34 +478,42 @@
 
     // Set up MutationObserver to detect the "Continue" button and attach a manual click listener
     const setupManualContinueButtonReset = () => {
-        if (continueButtonObserver) {
-            continueButtonObserver.disconnect();
-        }
-        continueButtonObserver = new MutationObserver((mutationsList) => {
-            mutationsList.forEach(mutation => {
-                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                    const button = document.querySelector(BUTTON_SELECTOR);
-                    // Ensure the button exists and we haven't already attached a listener to *this specific element*
-                    if (button && !button.dataset.listenerAttached) {
-                        button.addEventListener('click', (event) => {
-                            // Only reset if it was NOT an auto-click (i.e., manualClickDebounceTimeout is not active)
-                            if (!manualClickDebounceTimeout) {
-                                console.log("Auto-Click Debug: User manually clicked 'Continue' button. Resetting counter.");
-                                performResetAndResumeAutoClick("User manually clicked Continue button");
-                            } else {
-                                console.log("Auto-Click Debug: Auto-click detected on 'Continue' button (debounced). No manual reset triggered.");
-                            }
-                        });
-                        button.dataset.listenerAttached = 'true'; // Mark this button element to prevent re-attaching
-                        console.log("Auto-Click Debug: Manual 'Continue' button click listener attached.");
-                    }
+    if (continueButtonObserver) {
+        continueButtonObserver.disconnect();
+    }
+
+    continueButtonObserver = new MutationObserver((mutationsList) => {
+        mutationsList.forEach(mutation => {
+            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                // Watch for Continue button
+                const continueBtn = document.querySelector(BUTTON_SELECTOR);
+                if (continueBtn && !continueBtn.dataset.listenerAttached) {
+                    continueBtn.addEventListener('click', () => {
+                        if (!manualClickDebounceTimeout) {
+                            console.log("Auto-Click Debug: User manually clicked 'Continue'. Resetting.");
+                            performResetAndResumeAutoClick("User clicked Continue");
+                        }
+                    });
+                    continueBtn.dataset.listenerAttached = 'true';
                 }
-            });
+
+                // Watch for Regenerate button
+                const regenBtn = document.querySelector(REGENERATE_BUTTON_SELECTOR);
+                if (regenBtn && !regenBtn.dataset.listenerAttached) {
+                    regenBtn.addEventListener('click', () => {
+                        console.log("Auto-Click Debug: User clicked Regenerate. Resetting.");
+                        performResetAndResumeAutoClick("User clicked Regenerate");
+                    });
+                    regenBtn.dataset.listenerAttached = 'true';
+                }
+            }
         });
-        // Observe the body for changes in elements, as the button can appear anywhere
-        continueButtonObserver.observe(document.body, { childList: true, subtree: true });
-        console.log("Auto-Click Debug: Manual Continue Button Observer attached.");
-    };
+    });
+
+    continueButtonObserver.observe(document.body, { childList: true, subtree: true });
+    console.log("Auto-Click Debug: Continue & Regenerate button observer attached.");
+};
+
 
 
     // Main observer setup function (re-arms all internal auto-click logic)
