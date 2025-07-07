@@ -6,6 +6,7 @@
 // @version     5.9 // Incrementing version for enhanced robustness
 // @author      Your Name
 // @description Places an invisible overlay button over the Kindroid suggestion button to clear the textarea and then trigger the suggestion.
+// @icon          https://gitlab.com/breatfr/kindroid/-/raw/main/images/icon_kindroid.png
 // ==/UserScript==
 
 (function() {
