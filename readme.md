@@ -31,17 +31,19 @@ There are two ways to install these scripts in Violentmonkey:
 
 ### ✅ Option 1: Install by URL (Recommended)
 
-1. Click a script URL from the list below.
-2. Violentmonkey will open an install prompt → click **Install**.
-3. Script will now auto-update when new versions are pushed.
+1. Opoen ViolentMonkey Settings
+2. Click the + button and select "Install From URL"
+3. Put one of the URLs below
 
 Example URLs:
-https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/scripts/AutoContinue.js
-https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/scripts/BubbleExtender.js
-https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/scripts/ClearBoxWizard.js
-https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/scripts/CloneKinsToTheSide.js
-https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/scripts/CustomSuggestions.js
-https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/scripts/QuickReplies.js
+https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/AutoContinue/AutoContinue.js
+https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/Chat%20Bubble%20Extender/ChatExtender.js
+https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/ChatBox%20Clearer%20for%20Wizard/WizardClear.js
+https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/Quick%20Replies%20Customizer/QuickRepliesCustomizer.js
+https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/Suggestions%20Customizer/SuggestionsCustomizer.js
+https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/Vertical%20Kin%20Menu/CloneKinButtons.js
+
+
 
 
 > 📌 Tip: If the script doesn't install automatically, copy the URL, open a new tab, and paste it manually.
