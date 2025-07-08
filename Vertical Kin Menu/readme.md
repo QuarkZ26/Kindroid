@@ -1,8 +1,14 @@
-# 👥 CloneKinsToTheSide – Persistent Avatar Switcher for Kindroid
+# CloneKinsToTheSide – Persistent Avatar Switcher for Kindroid
 
 A [ViolentMonkey](https://violentmonkey.github.io/) userscript for [Kindroid.ai](https://kindroid.ai/) that **clones all visible avatars (“kins”) into a fixed vertical stack** on the right edge — always accessible, even when the main avatar bar disappears.
 
 Faster switching, fewer clicks, no hassle.
+
+---
+
+## NOTE: 
+
+I personally and currently do not use that many Kins, but I suspect this script might be impracticle for those who do, if not broken. The Kindroid team is also working on Folders, at that point this might quit working altogether or not be easily feasible anymore.
 
 ---
 
