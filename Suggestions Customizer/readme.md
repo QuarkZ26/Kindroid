@@ -28,7 +28,7 @@ Your custom buttons appear below Kindroid’s message box and insert text direct
 ## Install
 
 ```text
-https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/CustomSuggestions.js
+https://raw.githubusercontent.com/QuarkZ26/Kindroid/refs/heads/main/Suggestions%20Customizer/SuggestionsCustomizer.js
 ```
 
 ---
