@@ -1,15 +1,15 @@
 // ==UserScript==
 // @name         Kindroid Chat Bubble Width Extender
 // @namespace    http://tampermonkey.net/
-// @version      1.3
-// @description  Extend Kindroid chat bubble width with live slider UI and no refresh needed.
+// @version      1.4
+// @description  Extend Kindroid chat bubble width with live-updating slider (auto-save, no page refresh).
 // @author       You
 // @match        https://*.kindroid.*/*
 // @grant        GM_addStyle
 // @grant        GM_getValue
 // @grant        GM_setValue
 // @grant        GM_registerMenuCommand
-// @icon          https://gitlab.com/breatfr/kindroid/-/raw/main/images/icon_kindroid.png
+// @icon         https://gitlab.com/breatfr/kindroid/-/raw/main/images/icon_kindroid.png
 // ==/UserScript==
 
 (function () {
@@ -18,9 +18,9 @@
     const defaultWidth = 110;
     const styleId = 'kindroid-chat-width-style';
 
+    /** Inject / update the width-override CSS */
     function applyStyles(width) {
-        const oldStyle = document.getElementById(styleId);
-        if (oldStyle) oldStyle.remove();
+        document.getElementById(styleId)?.remove();
 
         const style = document.createElement('style');
         style.id = styleId;
@@ -35,6 +35,7 @@
         document.head.appendChild(style);
     }
 
+    /** Build the little slider panel */
     function openSettings() {
         if (document.getElementById('kindroid-settings-panel')) return;
 
@@ -57,34 +58,28 @@
             ">
                 <label for="widthSlider">Max Width: <span id="widthValue">${savedWidth}</span>%</label><br>
                 <input type="range" id="widthSlider" min="40" max="100" value="${savedWidth}" style="width: 100%; margin-top: 8px;"><br>
-                <button id="saveBtn" style="margin-top: 10px;">Save</button>
-                <button id="closeBtn" style="margin-top: 5px;">Close</button>
+                <button id="closeBtn" style="margin-top: 10px;">Close</button>
             </div>
         `;
         document.body.appendChild(panel);
 
-        const slider = document.getElementById('widthSlider');
+        const slider       = document.getElementById('widthSlider');
         const valueDisplay = document.getElementById('widthValue');
 
-        slider.addEventListener('input', (e) => {
-            const newVal = parseInt(e.target.value, 10);
-            valueDisplay.textContent = newVal;
-            applyStyles(newVal); // live update
-        });
+        // Live update + auto-save
+        const updateWidth = val => {
+            valueDisplay.textContent = val;
+            applyStyles(val);
+            GM_setValue('chatWidth', val);
+        };
 
-        document.getElementById('saveBtn').addEventListener('click', () => {
-            const newWidth = parseInt(slider.value, 10);
-            GM_setValue('chatWidth', newWidth);
-        });
+        slider.addEventListener('input', e => updateWidth(+e.target.value));
 
-        document.getElementById('closeBtn').addEventListener('click', () => {
-            panel.remove();
-        });
+        document.getElementById('closeBtn').addEventListener('click', () => panel.remove());
     }
 
-    // Register menu item
     GM_registerMenuCommand('⚙️ Chat Width Settings', openSettings);
 
-    // Apply initial style
+    // Initial style on page load
     applyStyles(GM_getValue('chatWidth', defaultWidth));
 })();
