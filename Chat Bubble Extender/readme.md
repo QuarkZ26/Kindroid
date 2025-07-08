@@ -25,4 +25,4 @@ Perfect for improving readability and reducing wasted screen space in narrow lay
 ## 🔗 Install
 
 ```text
-https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/BubbleExtender
+https://github.com/QuarkZ26/Kindroid/blob/main/Chat%20Bubble%20Extender/ChatExtender.js
