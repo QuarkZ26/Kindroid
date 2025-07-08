@@ -1,42 +1,30 @@
-# 🤖 AutoClickContinue – Hands-Free Reply Completion for Kindroid
+# AutoClickContinue – Hands-Free Reply Completion for Kindroid
 
-A smart [ViolentMonkey](https://violentmonkey.github.io/) userscript for [Kindroid.ai](https://kindroid.ai/) that **auto-presses the "Continue" button** when AI replies are truncated — and can optionally **re-send** prompts if the bot goes silent.
+A [ViolentMonkey](https://violentmonkey.github.io/) userscript for [Kindroid.ai](https://kindroid.ai/) that **auto-presses the "Continue" button** when AI replies are truncated.
 
 Never babysit incomplete responses again.
 
 ---
 
-## 🚀 Features
+## Features
 
-- 🖱️ Auto-clicks **Continue** when Kindroid pauses mid-reply
-- 🕹️ Toggle on/off with a floating **≫** button (top-center UI)
-- ✋ Long-press **≫** to enable **continuous mode** (no click limit)
-- 🕒 Auto-press **Send** if the AI goes silent after a timeout
-- 📊 Live status panel shows routine activity and click count
-- 🔄 Fully **SPA-aware** — survives navigation and DOM changes
+- Auto-clicks **Continue** when Kin's answer is incomplete
+- Clicks a user-decided number of times to limit the amount of times the script clicks, or use continuous mode
+- Adds a button on the page to enable/disable on-the-fly, or switch between the different modes
 
 ---
 
-## ⚙️ Configuration (In-Script Defaults)
+## Usage
 
-You can adjust these by editing the script directly or using ViolentMonkey’s "Storage" tab.
-
-| Config Key       | Default  | Description                                              |
-|------------------|----------|----------------------------------------------------------|
-| `interval`       | `1000 ms`| Polling rate for detecting the "Continue" button        |
-| `maxClicks`      | `1`      | Auto-click limit before pausing (ignored in continuous) |
-| `autoSendDelay`  | `10 s`   | Time to wait before pressing **Send** if bot is idle    |
-
----
-
-## 💡 Usage
-
-1. Install the script via the link below
+1. Install the script via the link below (see [readme](https://github.com/QuarkZ26/Kindroid/blob/main/readme.md) for help)
 2. Reload Kindroid.ai
-3. Tap the floating **≫** button (top-center) to enable
-4. **Long-press** the same button to switch to "continuous" mode
+3. Tap the floating **≫** button (top-center) to enable or disable
+4. **Long-press** the same button to switch to "continuous" mode or go back to steps mode.
 
-A small floating panel will appear showing the current status and auto-click count.
+**NOTE:** Although you can put a high number, there is still a 4000 character limit to the Kin's response. If that limit gets reached while **continuous mode** is on, you will get an error from Kindroid indefinitely, you will have to turn the script off in order to break that loop. I plan a future update to handle this and stop the loop when this happens.
+
+As such, I recommend not to put anything higher than 3, which is typically the amount of times you can continue the cut-off message before you reach that limit.
+
 
 ---
 
