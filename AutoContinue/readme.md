@@ -34,4 +34,4 @@ As such, I recommend not to put anything higher than 3, which is typically the a
 ## 🔗 Install
 
 ```text
-https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/AutoClickContinue.js
+https://raw.githubusercontent.com/QuarkZ26/Kindroid/refs/heads/main/AutoContinue/AutoContinue.js
