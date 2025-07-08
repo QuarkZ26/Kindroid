@@ -9,7 +9,8 @@ Never babysit incomplete responses again.
 ## Features
 
 - Auto-clicks **Continue** when Kin's answer is incomplete
-- Clicks a user-decided number of times to limit the amount of times the script clicks, or use continuous mode
+- Counter mode: Lets you specify the amount of times you want auto-click to happen
+- Continuous mode: Click until you break it!
 - Adds a button on the page to enable/disable on-the-fly, or switch between the different modes
 
 ---
@@ -20,6 +21,8 @@ Never babysit incomplete responses again.
 2. Reload Kindroid.ai
 3. Tap the floating **≫** button (top-center) to enable or disable
 4. **Long-press** the same button to switch to "continuous" mode or go back to steps mode.
+
+In Counter mode, after the number has been reached, the auto-clicking stops, until you either: answer, regenerate or click the continue button yourself.
 
 **NOTE:** Although you can put a high number, there is still a 4000 character limit to the Kin's response. If that limit gets reached while **continuous mode** is on, you will get an error from Kindroid indefinitely, you will have to turn the script off in order to break that loop. I plan a future update to handle this and stop the loop when this happens.
 
