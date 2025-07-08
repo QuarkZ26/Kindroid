@@ -10,7 +10,7 @@ Never babysit incomplete responses again.
 
 - Auto-clicks **Continue** when Kin's answer is incomplete
 - Counter mode: Lets you specify the amount of times you want auto-click to happen
-- Continuous mode: Click until you break it!
+- Continuous mode: clicks it 'til it breaks it!
 - Adds a button on the page to enable/disable on-the-fly, or switch between the different modes
 
 ---
