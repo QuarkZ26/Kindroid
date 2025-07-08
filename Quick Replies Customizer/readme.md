@@ -28,7 +28,7 @@ Changes are saved automatically and applied live — no page refresh required.
 ## 🔗 Install
 
 ```text
-https://raw.githubusercontent.com/QuarkZ26/Kindroid/main/QuickReplies.js
+https://github.com/QuarkZ26/Kindroid/blob/main/Quick%20Replies%20Customizer/QuickRepliesCustomizer.js
 ```
 
 ---
