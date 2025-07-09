@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Kindroid Chat Bubble Width Extender
 // @namespace    http://tampermonkey.net/
-// @version      1.4
+// @version      1.4.1
 // @description  Extend Kindroid chat bubble width with live-updating slider (auto-save, no page refresh).
 // @author       You
 // @match        https://*.kindroid.*/*
@@ -27,6 +27,7 @@
         style.textContent = `
             .css-fujl5p,
             .css-16auq5p,
+            .css-116lnl0,
             .css-nxakwj {
                 max-width: ${width}% !important;
                 width: auto !important;
