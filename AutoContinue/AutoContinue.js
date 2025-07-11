@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Kindroid Auto Click Continue
 // @namespace     Violentmonkey Scripts
-// @version       3.40
+// @version       3.40.1
 // @description   Adds a persistent button to Kindroid to auto-click "Continue" messages and "Send" if AI has not responded within X seconds, with a configurable counter and manual reset. Resets only on user explicit action (Enter, Send, Manual Continue Click, or Toggling Button). Long press on the icon enables continuous auto-clicking.
 // @match         https://kindroid.ai/*
 // @grant         GM_getValue
@@ -668,24 +668,28 @@
             configButton.textContent = '>>';
             configButton.className = 'chakra-button'; // Using more stable part for styling
             configButton.style.cssText = `
-                position: fixed;
-                top: 10px;
-                left: 50%; /* Position from left */
-                transform: translateX(-50%); /* Center horizontally */
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                border: 2px solid white;
-                color: white;
-                font-size: 20px;
-                font-weight: bold;
-                cursor: pointer;
-                z-index: 9999;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            `;
+                    position: fixed;
+                    top: 10px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    border: 2px solid white;
+                    color: white;
+                    font-size: 20px;
+                    font-family: monospace;
+                    line-height: 1;
+                    font-weight: bold;
+                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    z-index: 9999;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+                `;
+
             setButtonColor(); // Set initial color based on config
 
             // Add hover listeners to show/hide status panel
