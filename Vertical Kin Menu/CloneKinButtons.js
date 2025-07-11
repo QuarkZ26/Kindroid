@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        Clone All Kins Buttons to Right (Full Container Version)
+// @name        Clone All Kins Buttons to Right
 // @namespace   Violentmonkey Scripts
 // @version     1.1.0
 // @description Clone full avatar cards and display them stacked on the right side of the screen. Fully functional, including labels and icons. Shows a "Go Back" button if avatars are not present.
