@@ -22,12 +22,16 @@ Never babysit incomplete responses again.
 3. Tap the floating **≫** button (top-center) to enable or disable
 4. **Long-press** the same button to switch to "continuous" mode or go back to steps mode.
 
-In Counter mode, after the number has been reached, the auto-clicking stops, until you either: answer, regenerate or click the continue button yourself.
+In Counter mode, after the number has been reached, the auto-clicking stops, until you either: answer, regenerate, turn it off and on, or click the continue button yourself. 
+Although you can put a high number, there is still a 4000 character limit to the Kin's response. If that limit gets reached while **continuous mode** is on, you will get an error from Kindroid and the script will stop, the icon will be red. Just as above, clicking Continue, answering, regenerating or turning off and on, will enable the script again.
 
-**NOTE:** Although you can put a high number, there is still a 4000 character limit to the Kin's response. If that limit gets reached while **continuous mode** is on, you will get an error from Kindroid indefinitely, you will have to turn the script off in order to break that loop. I plan a future update to handle this and stop the loop when this happens.
+The following color code is used for the button:
 
-As such, I recommend not to put anything higher than 3, which is typically the amount of times you can continue the cut-off message before you reach that limit.
-
+    🟥 Red for error state
+    ⚫ Black when disabled
+    🔵 Blue for continuous
+    🟢 Green for active
+    🟡 Yellow when paused due to max clicks
 
 ---
 
