@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          Kindroid Auto Click Continue
 // @namespace     Violentmonkey Scripts
-// @version       3.39.7
+// @version       3.40
 // @description   Adds a persistent button to Kindroid to auto-click "Continue" messages and "Send" if AI has not responded within X seconds, with a configurable counter and manual reset. Resets only on user explicit action (Enter, Send, Manual Continue Click, or Toggling Button). Long press on the icon enables continuous auto-clicking.
 // @match         https://kindroid.ai/*
 // @grant         GM_getValue
@@ -13,6 +13,35 @@
 
 (function() {
     'use strict';
+
+
+    const ERROR_TOAST_SELECTOR = '#chakra-toast-manager-top .chakra-alert[data-status="error"]';
+    let isErrorActive = false;
+
+    const monitorErrorToasts = () => {
+        const toastRoot = document.querySelector('#chakra-toast-manager-top');
+        if (!toastRoot) {
+            console.warn("Auto-Click: Toast container not found.");
+            return;
+        }
+
+        const observer = new MutationObserver(() => {
+            const errorToast = toastRoot.querySelector('.chakra-alert[data-status="error"]');
+            if (errorToast) {
+                console.warn("Auto-Click: Error toast detected. Pausing routine.");
+                isErrorActive = true;
+                tearDownInternalListeners();
+                updateStatusDisplay();
+                setButtonColor();
+            } else if (isErrorActive) {
+                console.log("Auto-Click: Error toast dismissed. Waiting for manual resume.");
+            }
+        });
+
+        observer.observe(toastRoot, { childList: true, subtree: true });
+    };
+
+
 
     // --- Configuration ---
     const DEFAULT_CONFIG = {
@@ -28,6 +57,11 @@
     let config = {};
     let clickCount = 0;
     let observer = null;
+
+    let recentClickTimestamps = [];
+    const RAPID_CLICK_THRESHOLD_MS = 2000;
+    const RAPID_CLICK_COUNT = 3;
+
     let buttonCheckInterval = null;
     let manualClickDebounceTimeout = null;
     let spinnerCheckInterval = null;
@@ -106,21 +140,27 @@
     };
 
     // Update the color of the script's toggle button
+
+
     const setButtonColor = () => {
         if (!configButton) return;
         let color;
-        if (!config.enabled) {
-            color = 'rgba(255, 0, 0, 0.6)'; // Red for Disabled
+        if (isErrorActive) {
+            color = 'rgba(255, 0, 0, 0.9)'; // Bright red for error state
+        } else if (!config.enabled) {
+            color = 'rgba(0, 0, 0, 0.8)'; // Black for Disabled
         } else if (config.continuousModeEnabled) {
             color = 'rgba(0, 0, 255, 0.6)'; // Blue for Continuous Mode
         } else if (clickCount >= config.maxClicks) {
-            color = 'rgba(255, 215, 0, 0.6)'; // Gold for Paused (Limit Reached)
+            color = 'rgba(255, 215, 0, 0.6)'; // Yellow for Paused (Limit Reached)
         } else {
             color = 'rgba(0, 128, 0, 0.6)'; // Green for Active
         }
         configButton.style.backgroundColor = color;
         console.log(`Auto-Click Debug: Set button background-color to ${color} (effective routine state: ${getStatusRoutineText()}).`);
     };
+
+
 
     // Get routine status text for display
     const getStatusRoutineText = () => {
@@ -148,6 +188,10 @@
 
     // Reset auto-click counter and resume if enabled
     const performResetAndResumeAutoClick = (reason = "Manual reset") => {
+        if (isErrorActive) {
+            console.warn("Auto-Click: Cannot resume routine due to active error toast.");
+            return;
+        }
         if (manualClickDebounceTimeout) {
             clearTimeout(manualClickDebounceTimeout);
             manualClickDebounceTimeout = null;
@@ -264,6 +308,23 @@
             manualClickDebounceTimeout = setTimeout(() => {
                 button.click();
                 clickCount++;
+
+    const now = Date.now();
+    recentClickTimestamps.push(now);
+    if (recentClickTimestamps.length > RAPID_CLICK_COUNT) {
+        recentClickTimestamps.shift();
+    }
+
+    if (recentClickTimestamps.length === RAPID_CLICK_COUNT &&
+        (now - recentClickTimestamps[0]) <= RAPID_CLICK_THRESHOLD_MS) {
+        console.warn("Auto-Click: Detected rapid clicking pattern. Triggering error pause.");
+        isErrorActive = true;
+        tearDownInternalListeners();
+        updateStatusDisplay();
+        setButtonColor();
+        return;
+    }
+
                 updateStatusDisplay();
                 setButtonColor();
                 isCoolingDown = false; // End cooldown after click attempt
@@ -416,7 +477,11 @@
 
         if (!textareaEnterKeyListener) {
             textareaEnterKeyListener = (event) => {
-                if (event.key === 'Enter' && !event.shiftKey) { // Check for Enter without Shift
+                if (event.key === 'Enter' && !event.shiftKey) {
+                if (isErrorActive) {
+                    console.log("Auto-Click: Error state cleared by Enter key.");
+                    isErrorActive = false;
+                }
                     // If user presses Enter, clear AI response timeout and reset click counter
                     clearAiResponseTimeout();
                     performResetAndResumeAutoClick("User pressed Enter");
@@ -430,6 +495,10 @@
                 // If user clicks send, clear AI response timeout and reset click counter
                 // Use a debounce to distinguish from auto-send clicks
                 if (!manualClickDebounceTimeout) {
+                if (isErrorActive) {
+                    console.log("Auto-Click: Error state cleared by Send button click.");
+                    isErrorActive = false;
+                }
                     clearAiResponseTimeout();
                     performResetAndResumeAutoClick("User manually clicked Send button");
                 } else {
@@ -490,7 +559,15 @@
                 const continueBtn = document.querySelector(BUTTON_SELECTOR);
                 if (continueBtn && !continueBtn.dataset.listenerAttached) {
                     continueBtn.addEventListener('click', () => {
+    if (isErrorActive) {
+        console.log("Auto-Click: Error state cleared by user clicking Continue.");
+        isErrorActive = false;
+    }
                         if (!manualClickDebounceTimeout) {
+                if (isErrorActive) {
+                    console.log("Auto-Click: Error state cleared by Send button click.");
+                    isErrorActive = false;
+                }
                             console.log("Auto-Click Debug: User manually clicked 'Continue'. Resetting.");
                             performResetAndResumeAutoClick("User clicked Continue");
                         }
@@ -502,6 +579,10 @@
                 const regenBtn = document.querySelector(REGENERATE_BUTTON_SELECTOR);
                 if (regenBtn && !regenBtn.dataset.listenerAttached) {
                     regenBtn.addEventListener('click', () => {
+    if (isErrorActive) {
+        console.log("Auto-Click: Error state cleared by user clicking Regenerate.");
+        isErrorActive = false;
+    }
                         console.log("Auto-Click Debug: User clicked Regenerate. Resetting.");
                         performResetAndResumeAutoClick("User clicked Regenerate");
                     });
@@ -654,7 +735,11 @@
                     config.enabled = !config.enabled; // Toggle state
                     await saveConfig();
                     console.log(`Auto-Click: Script toggled ${config.enabled ? 'ON' : 'OFF'}.`);
-                    performResetAndResumeAutoClick(`Script toggled ${config.enabled ? 'ON' : 'OFF'}`);
+                    if (isErrorActive) {
+                console.log("Auto-Click: Error state manually cleared by toggle.");
+    isErrorActive = false;
+}
+performResetAndResumeAutoClick(`Script toggled ${config.enabled ? 'ON' : 'OFF'}`);
                 }
                 isLongPress = false; // Reset flag
             };
@@ -753,6 +838,7 @@
     };
 
     // Start the script
+    monitorErrorToasts();
     ensureElementsArePresent();
 
 })();
