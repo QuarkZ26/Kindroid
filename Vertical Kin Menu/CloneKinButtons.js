@@ -5,6 +5,7 @@
 // @description Clone avatar cards to the right. Refreshes UI state only on click. Handles Kindroid reactivity delay.
 // @match       *://kindroid.ai/*
 // @grant       none
+// @icon          https://gitlab.com/breatfr/kindroid/-/raw/main/images/icon_kindroid.png
 // ==/UserScript==
 
 (function () {
