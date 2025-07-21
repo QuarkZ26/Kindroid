@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Clone All Kins Buttons to Right
 // @namespace   Violentmonkey Scripts
-// @version     1.2.0
+// @version     1.2.1
 // @description Clone avatar cards to the right. Refreshes UI state only on click. Handles Kindroid reactivity delay.
 // @match       *://kindroid.ai/*
 // @grant       none
@@ -64,7 +64,6 @@
           view: window
         }));
 
-        // ✅ Delayed refresh to capture Kindroid UI change
         requestAnimationFrame(() => {
           setTimeout(() => {
             refreshClones();
@@ -208,7 +207,7 @@
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ['data-rfd-draggable-id']
+      attributeFilter: ['data-rfd-draggable-id', 'class', 'style']
     });
   }
 
@@ -228,7 +227,6 @@
     }
   }
 
-  // Only original avatar clicks (not clones) — instant refresh
   document.addEventListener('click', (e) => {
     const clicked = e.target.closest('[data-rfd-draggable-id]');
     if (clicked && !clicked.classList.contains(CLONED_BUTTON_CLASS) && !isFullyPaused) {
@@ -236,7 +234,6 @@
     }
   });
 
-  // Pause/resume logic via Kindroid panels
   document.addEventListener('click', (e) => {
     const target = e.target.closest('div');
     if (!target) return;
@@ -254,7 +251,9 @@
       if (isFullyPaused) {
         isFullyPaused = false;
         monitorContainerPresence();
-        refreshClones();
+        // 👇 Delay refresh to allow Kindroid to finish applying changes
+        setTimeout(() => refreshClones(), 300);
+        setTimeout(() => refreshClones(), 300);
       }
     }
   });
