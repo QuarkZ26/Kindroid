@@ -14,6 +14,7 @@ A collection of helper scripts for [kindroid.ai](https://kindroid.ai), designed 
 | [**CloneKinsToTheSide.js**](https://github.com/QuarkZ26/Kindroid/tree/main/Vertical%20Kin%20Menu) | Clones avatar (kin) buttons to the right side for fast access. |
 | [**CustomSuggestions.js**](https://github.com/QuarkZ26/Kindroid/tree/main/Suggestions%20Customizer) | Add personal suggestion buttons with color and label. Includes Manager. |
 | [**QuickReplies.js**](https://github.com/QuarkZ26/Kindroid/tree/main/Quick%20Replies%20Customizer)      | Create one-tap replies under the textbox that auto-send. |
+| [**Auto Emojis**](https://github.com/QuarkZ26/Kindroid/blob/main/Emojis/emojis.js)  |  Automatically insert emojis using common shortcuts like :), ;), etc. 
 
 ---
 
