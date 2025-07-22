@@ -865,10 +865,10 @@
             // If suggestionBox is null, log and retry if max retries not reached
             if (setupRetries < MAX_SETUP_RETRIES) {
                 setupRetries++;
-                console.log(`Kindroid Buttons: Suggestion box not found. Retrying in ${RETRY_DELAY_MS}ms... (${setupRetries}/${MAX_SETUP_RETRIES})`);
+                //console.log(`Kindroid Buttons: Suggestion box not found. Retrying in ${RETRY_DELAY_MS}ms... (${setupRetries}/${MAX_SETUP_RETRIES})`);
                 setTimeout(checkAndSetupButtons, RETRY_DELAY_MS);
             } else {
-                console.warn("Kindroid Buttons: Max retries reached. Suggestion box still not found. Skipping setup for this cycle.");
+                //console.warn("Kindroid Buttons: Max retries reached. Suggestion box still not found. Skipping setup for this cycle.");
                 setupRetries = 0; // Reset retries so it can try again later
             }
             return; // Exit if suggestionBox is null (and retries are handled)
@@ -881,7 +881,7 @@
             const customButtonsExistAndCorrectlyPlaced = activeKindroidButtonRow.previousElementSibling?.classList.contains('custom-button-container');
 
             if (!customButtonsExistAndCorrectlyPlaced) {
-                console.log("Kindroid Buttons: Setting up custom buttons for a new or uninitialized button row.");
+                //console.log("Kindroid Buttons: Setting up custom buttons for a new or uninitialized button row.");
                 if (createCustomButtons(activeKindroidButtonRow)) { // Pass the identified active row
                     GM_setValue(BUTTONS_ADDED_KEY, 'true'); // Flag that buttons were added
                 }
