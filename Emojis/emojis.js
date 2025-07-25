@@ -1,98 +1,94 @@
 // ==UserScript==
-// @name         Universal Emoji Replacer (Extended)
-// @match        *://kindroid.ai/*
-// @grant        none
+// @name         Global Emoji Shortcut Replacer (With Space)
+// @namespace    Violentmonkey Scripts
+// @version      1.2.0
+// @description  Replaces emoji shortcuts like :) with 🙂 and adds a real space in all inputs and contenteditable fields
+// @match       *://kindroid.ai/*
+// @grant       none
+// @icon        https://gitlab.com/breatfr/kindroid/-/raw/main/images/icon_kindroid.png
 // ==/UserScript==
 
 (function () {
-    'use strict';
+  'use strict';
 
-    const emojiMap = {
-        ':)': '🙂',
-        ':-)': '🙂',
-        ':(': '🙁',
-        ':-(': '🙁',
-        ':D': '😄',
-        ':-D': '😄',
-        ':P': '😛',
-        ':-P': '😛',
-        ':p': '😛',
-        ':-p': '😛',
-        ';)': '😉',
-        ';-)': '😉',
-        'XD': '😆',
-        'xD': '😆',
-        ':o': '😮',
-        ':-o': '😮',
-        ':O': '😮',
-        ':-O': '😮',
-        ':|': '😐',
-        ':-|': '😐',
-        ':/': '😕',
-        ':-/': '😕',
-        ':\\': '😕',
-        ':-\\': '😕',
-        ":'(": '😢',
-        '<3': '❤️',
-        '</3': '💔',
-        ':*': '😘',
-        ':-*': '😘',
-        ':3': '😊',
-        '^_^': '😄',
-        '-_-': '😑',
-        'O_O': '😳',
-        'T_T': '😭',
-        ':poop:': '💩',
-        ':thumbsup:': '👍',
-        ':thumbsdown:': '👎',
-        ':shrug:': '🤷',
-        ':clap:': '👏',
-        ':ok:': '👌',
-        ':100:': '💯',
-    };
+  const emojiMap = {
+    ':)': '🙂',
+    ':(': '🙁',
+    ':D': '😄',
+    ':P': '😛',
+    ';)': '😉',
+    'XD': '😆',
+    ':o': '😮',
+    ':O': '😮',
+    ':|': '😐',
+    ':/': '😕',
+    ':\\': '😕',
+    ":'(": '😢',
+    '<3': '❤️',
+    '</3': '💔',
+    ':*': '😘',
+    ':3': '😊',
+    '^_^': '😄',
+    '-_-': '😑',
+    'O_O': '😳',
+    'T_T': '😭',
+    ':fire:': '🔥',
+    ':100:': '💯',
+    ':shrug:': '🤷',
+    ':clap:': '👏',
+    ':ok:': '👌',
+    ':star:': '⭐'
+  };
 
-    function replaceEmojisInText(text) {
-        for (const [key, emoji] of Object.entries(emojiMap)) {
-            text = text.replaceAll(key, emoji);
-        }
-        return text;
+  function tryReplaceShortcut(text) {
+    for (const [shortcut, emoji] of Object.entries(emojiMap)) {
+      if (text.endsWith(shortcut)) {
+        return text.slice(0, -shortcut.length) + emoji + ' ';
+      }
     }
+    return null;
+  }
 
-    function handleInput(e) {
-        const el = e.target;
-
-        if (el.isContentEditable) {
-            const selection = window.getSelection();
-            if (!selection || !selection.rangeCount) return;
-
-            const range = selection.getRangeAt(0);
-            const node = range.startContainer;
-
-            if (node.nodeType === Node.TEXT_NODE) {
-                const newText = replaceEmojisInText(node.textContent);
-                if (newText !== node.textContent) {
-                    node.textContent = newText;
-
-                    // Move cursor to end
-                    range.setStart(node, newText.length);
-                    range.setEnd(node, newText.length);
-                    selection.removeAllRanges();
-                    selection.addRange(range);
-                }
-            }
-        } else if (
-            el.tagName === 'TEXTAREA' ||
-            (el.tagName === 'INPUT' && el.type === 'text')
-        ) {
-            const oldValue = el.value;
-            const newValue = replaceEmojisInText(oldValue);
-            if (newValue !== oldValue) {
-                const pos = el.selectionStart;
-                el.value = newValue;
-                el.setSelectionRange(pos, pos);
-            }
-        }
+  function dispatchReactCompatibleInput(el, value) {
+    const prototype = Object.getPrototypeOf(el);
+    const setter = Object.getOwnPropertyDescriptor(prototype, 'value')?.set;
+    if (setter) {
+      setter.call(el, value);
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+    } else {
+      el.value = value;
+      el.dispatchEvent(new Event('input', { bubbles: true }));
     }
+  }
 
-    document.addEventListener('input', handleInput, true);
+  function handleInput(e) {
+    const el = e.target;
+
+    if (el.tagName === 'TEXTAREA' || (el.tagName === 'INPUT' && el.type === 'text')) {
+      const replaced = tryReplaceShortcut(el.value);
+      if (replaced !== null) {
+        dispatchReactCompatibleInput(el, replaced);
+      }
+    } else if (el.isContentEditable) {
+      const sel = window.getSelection();
+      if (!sel || !sel.rangeCount) return;
+      const range = sel.getRangeAt(0);
+      const node = range.startContainer;
+      if (node.nodeType !== Node.TEXT_NODE) return;
+
+      const text = node.textContent;
+      const replaced = tryReplaceShortcut(text.slice(0, range.startOffset));
+      if (replaced !== null) {
+        node.textContent = replaced + text.slice(range.startOffset);
+        const newOffset = replaced.length;
+        const newRange = document.createRange();
+        newRange.setStart(node, newOffset);
+        newRange.setEnd(node, newOffset);
+        sel.removeAllRanges();
+        sel.addRange(newRange);
+      }
+    }
+  }
+
+  document.addEventListener('input', handleInput, true);
 })();
