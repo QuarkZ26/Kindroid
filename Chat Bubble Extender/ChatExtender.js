@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Kindroid Chat Bubble Width Extender
 // @namespace    http://tampermonkey.net/
-// @version      1.4.1
+// @version      1.4.2
 // @description  Extend Kindroid chat bubble width with live-updating slider (auto-save, no page refresh).
 // @author       You
 // @match        https://*.kindroid.*/*
@@ -9,7 +9,7 @@
 // @grant        GM_getValue
 // @grant        GM_setValue
 // @grant        GM_registerMenuCommand
-// @icon         https://gitlab.com/breatfr/kindroid/-/raw/main/images/icon_kindroid.png
+// @icon         https://raw.githubusercontent.com/QuarkZ26/Kindroid/refs/heads/main/kindroid-icon-filled-256.png
 // ==/UserScript==
 
 (function () {
