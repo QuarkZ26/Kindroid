@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name        Clone All Kins Buttons to Right
 // @namespace   Violentmonkey Scripts
-// @version     1.2.2
+// @version     1.2.3
 // @description Clone avatar cards to the right. Refreshes UI state only on click. Handles Kindroid reactivity delay.
 // @match       *://kindroid.ai/*
 // @grant       none
-// @icon          https://gitlab.com/breatfr/kindroid/-/raw/main/images/icon_kindroid.png
+// @icon        https://raw.githubusercontent.com/QuarkZ26/Kindroid/refs/heads/main/kindroid-icon-filled-256.png
 // ==/UserScript==
 
 (function () {
