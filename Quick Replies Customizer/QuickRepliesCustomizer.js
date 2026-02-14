@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name Kindroid Quick Reply Buttons with Manager
 // @namespace Violentmonkey Scripts
-// @version 3.1.1
+// @version 3.1.2
 // @description Adds customizable quick reply buttons under the chat input, keeps them across page changes, and includes a management panel.
 // @match *://*.kindroid.ai/*
 // @grant GM_setValue
 // @grant GM_getValue
 // @grant GM_addValueChangeListener
 // @grant GM_registerMenuCommand
-// @icon https://gitlab.com/breatfr/kindroid/-/raw/main/images/icon_kindroid.png
+// @icon https://raw.githubusercontent.com/QuarkZ26/Kindroid/refs/heads/main/kindroid-icon-filled-256.png
 // ==/UserScript==
 
 (function () {
