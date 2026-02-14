@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name          Kindroid Suggestion Buttons Customizer
 // @namespace     Violentmonkey Scripts
-// @version       3.22 // Updated version for retry logic
+// @version       3.22.2 // Updated version for retry logic
 // @description   Customizable suggestion buttons with management interface, with drag & drop
 // @match         *://*.kindroid.ai/*
 // @grant         GM_setValue
 // @grant         GM_getValue
 // @grant         GM_addValueChangeListener
 // @grant         GM_registerMenuCommand
-// @icon          https://gitlab.com/breatfr/kindroid/-/raw/main/images/icon_kindroid.png
+// @icon          https://raw.githubusercontent.com/QuarkZ26/Kindroid/refs/heads/main/kindroid-icon-filled-256.png
 // ==/UserScript==
 
 (function () {
