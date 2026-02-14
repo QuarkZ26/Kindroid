@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Global Emoji Shortcut Replacer (With Space)
 // @namespace    Violentmonkey Scripts
-// @version      1.2.1
+// @version      1.2.2
 // @description  Replaces emoji shortcuts like :) with 🙂 and adds a real space in all inputs and contenteditable fields
 // @match       *://kindroid.ai/*
 // @grant       none
-// @icon        https://github.com/QuarkZ26/Kindroid/blob/main/kindroid-icon-filled-256.png
+// @icon        https://raw.githubusercontent.com/QuarkZ26/Kindroid/refs/heads/main/kindroid-icon-filled-256.png
 // ==/UserScript==
 
 (function () {
