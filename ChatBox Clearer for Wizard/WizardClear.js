@@ -3,10 +3,10 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://kindroid.ai/*
 // @grant       none
-// @version     6.1
+// @version     6.1.2
 // @author      Your Name
 // @description Clears textarea before Suggest. Long-press skips clearing and just add onto what's in the box, great if you want to input something and let the wizard add to it.
-// @icon        https://gitlab.com/breatfr/kindroid/-/raw/main/images/icon_kindroid.png
+// @icon        https://raw.githubusercontent.com/QuarkZ26/Kindroid/refs/heads/main/kindroid-icon-filled-256.png
 // ==/UserScript==
 
 (function () {
